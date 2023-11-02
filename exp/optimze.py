@@ -903,5 +903,5 @@ if __name__ == "__main__":
     calculate_merge_function_DAG2(fc_dict_6, lada=0)
     print("lada=1")
     calculate_merge_function_DAG2(fc_dict_6, lada=1)
-    print("lada=10")
-    calculate_merge_function_DAG2(fc_dict_6, lada=10)
+    print("lada=100000000")
+    calculate_merge_function_DAG2(fc_dict_6, lada=100000000)
