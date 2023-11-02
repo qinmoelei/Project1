@@ -4,7 +4,7 @@
 # Baselines
 Since running function sperately or switching them one by one does not require knowing the DAGs, these baselines are easily calculated. Simply run `python exp/all_merge.py` or `python exp/all_sperate.py` to calculate the time and price for runninig six functions or 10 functions.
 # Best solution
-- [ ] Run `python exp/optimze.py` to get the best solution for running six functions or 10 functions. (The only missing part is to construct the graph: calculating the target distance among different functions) 
+- [ ] Run `python exp/optimze.py` to get the best solution for running six functions or 10 functions. (The only missing part is to construct the graph for DAG 3 and DAG 4: calculating the target distance among different functions) 
 
 Use the `calculate_merge_distance` to calculate the balanced result (average of execution time and price) for merged functions or a single function.
 
