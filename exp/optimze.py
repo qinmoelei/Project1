@@ -87,9 +87,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f3"], fc_dict_x["f7"]]),
         },
         "f3": {"f7": transition_price + calculate_merge_distance([fc_dict_x["f7"]])},
+        "f7": {},
     }
     shortest_distances_237, predecessors_237 = dijkstra(graph_237, "f2")
-
+    shortest_distances_237 = shortest_distances_237["f7"]
     graph_247 = {
         "f2": {
             "f4": transition_price + calculate_merge_distance([fc_dict_x["f4"]]),
@@ -97,8 +98,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f4"], fc_dict_x["f7"]]),
         },
         "f4": {"f7": transition_price + calculate_merge_distance([fc_dict_x["f7"]])},
+        "f7": {},
     }
     shortest_distances_247, predecessors_247 = dijkstra(graph_247, "f2")
+    shortest_distances_247 = shortest_distances_247["f7"]
 
     graph_248 = {
         "f2": {
@@ -107,8 +110,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f4"], fc_dict_x["f8"]]),
         },
         "f4": {"f8": transition_price + calculate_merge_distance([fc_dict_x["f8"]])},
+        "f8": {},
     }
     shortest_distances_248, predecessors_248 = dijkstra(graph_248, "f2")
+    shortest_distances_248 = shortest_distances_248["f8"]
 
     graph_258 = {
         "f2": {
@@ -117,8 +122,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f8"]]),
         },
         "f5": {"f8": transition_price + calculate_merge_distance([fc_dict_x["f8"]])},
+        "f8": {},
     }
     shortest_distances_258, predecessors_258 = dijkstra(graph_258, "f2")
+    shortest_distances_258 = shortest_distances_258["f8"]
 
     graph_259 = {
         "f2": {
@@ -127,8 +134,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f9"]]),
         },
         "f5": {"f9": transition_price + calculate_merge_distance([fc_dict_x["f9"]])},
+        "f9": {},
     }
     shortest_distances_259, predecessors_259 = dijkstra(graph_259, "f2")
+    shortest_distances_259 = shortest_distances_259["f9"]
     graph_269 = {
         "f2": {
             "f6": transition_price + calculate_merge_distance([fc_dict_x["f6"]]),
@@ -136,9 +145,10 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance([fc_dict_x["f6"], fc_dict_x["f9"]]),
         },
         "f6": {"f9": transition_price + calculate_merge_distance([fc_dict_x["f9"]])},
+        "f9": {},
     }
     shortest_distances_269, predecessors_269 = dijkstra(graph_269, "f2")
-
+    shortest_distances_269 = shortest_distances_269["f9"]
     graph = {
         "start": {
             "f1": transition_price + calculate_merge_distance([fc_dict_x["f1"]]),
@@ -517,18 +527,66 @@ def calculate_merge_function_DAG1(fc_dict_x):
                 ]
             ),
         },
+        "f9": {
+            "f7": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f4"],
+                    fc_dict_x["f7"],
+                ]
+            ),
+            "f8": transition_price + shortest_distances_248,
+            "f10": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f4"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f4"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+        },
+        "f10": {"end": transition_price},
+        "end": {},
     }
+    shortest_distances, predecessors = dijkstra(graph, "start")
+    print(shortest_distances)
+    print(get_shortest_path(predecessors, "start", "end"))
 
 
 if __name__ == "__main__":
-    graph = {
-        "A": {"B": 1, "C": 4},
-        "B": {"C": 2, "D": 5},
-        "C": {"B": 2, "D": 1},
-        "D": {"B": 5, "C": 1},
-    }
-    shortest_distances, predecessors = dijkstra(graph, "A")
-    print(shortest_distances)
-    print(get_shortest_path(predecessors, "A", "D"))
+    # graph = {
+    #     "A": {"B": 1, "C": 4},
+    #     "B": {"C": 2, "D": 5},
+    #     "C": {"B": 2, "D": 1},
+    #     # "D": {"B": 5, "C": 1},
+    #     "D": {},
+    # }
+    # shortest_distances, predecessors = dijkstra(graph, "A")
+    # print(shortest_distances)
+    # print(get_shortest_path(predecessors, "A", "D"))
 
+    # graph_237 = {
+    #     "f2": {
+    #         "f3": transition_price + calculate_merge_distance([fc_dict_x["f3"]]),
+    #         "f7": transition_price
+    #         + calculate_merge_distance([fc_dict_x["f3"], fc_dict_x["f7"]]),
+    #     },
+    #     "f3": {"f7": transition_price + calculate_merge_distance([fc_dict_x["f7"]])},
+    #     "f7":{}
+    # }
+    # shortest_distances_237, predecessors_237 = dijkstra(graph_237, "f2")
+    # print(shortest_distances_237)
     calculate_merge_function_DAG1(fc_dict_x)
