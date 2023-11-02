@@ -36,9 +36,9 @@ def calculate_target(time, price, lada=1e-7):
     return lada * time + price
 
 
-def calculate_merge_distance(function_list,lada=1e-7):
+def calculate_merge_distance(function_list, lada=1e-7):
     time, price = calculate_price_time(function_list)
-    return calculate_target(time, price,lada=lada)
+    return calculate_target(time, price, lada=lada)
 
 
 def dijkstra(graph, start):
@@ -566,7 +566,195 @@ def calculate_merge_function_DAG1(fc_dict_x):
     print(get_shortest_path(predecessors, "start", "end"))
 
 
+def calculate_merge_function_DAG2(fc_dict_6):
+    graph_1246 = {
+        "fx1": {
+            "fx2": transition_price + calculate_merge_distance([fc_dict_6["fx2"]]),
+            "fx4": transition_price
+            + calculate_merge_distance([fc_dict_6["fx2"], fc_dict_6["fx4"]]),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx2"], fc_dict_6["fx4"], fc_dict_6["fx6"]]
+            ),
+        },
+        "fx2": {
+            "fx4": transition_price + calculate_merge_distance([fc_dict_6["fx4"]]),
+            "fx6": transition_price
+            + calculate_merge_distance([fc_dict_6["fx4"], fc_dict_6["fx6"]]),
+        },
+        "fx4": {
+            "fx6": transition_price + calculate_merge_distance([fc_dict_6["fx6"]]),
+        },
+        "fx6": {},
+    }
+    shortest_distances_1246, predecessors_1246 = dijkstra(graph_1246, "fx1")
+    shortest_distances_1246 = shortest_distances_1246["fx6"]
+
+    graph_1356 = {
+        "fx1": {
+            "fx3": transition_price + calculate_merge_distance([fc_dict_6["fx3"]]),
+            "fx5": transition_price
+            + calculate_merge_distance([fc_dict_6["fx3"], fc_dict_6["fx5"]]),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx3"], fc_dict_6["fx5"], fc_dict_6["fx6"]]
+            ),
+        },
+        "fx3": {
+            "fx5": transition_price + calculate_merge_distance([fc_dict_6["fx5"]]),
+            "fx6": transition_price
+            + calculate_merge_distance([fc_dict_6["fx5"], fc_dict_6["fx6"]]),
+        },
+        "fx5": {
+            "fx6": transition_price + calculate_merge_distance([fc_dict_6["fx6"]]),
+        },
+        "fx6": {},
+    }
+    shortest_distances_1356, predecessors_1356 = dijkstra(graph_1246, "fx1")
+    shortest_distances_1356 = shortest_distances_1356["fx6"]
+
+    graph = {
+        "start": {
+            "fx1": transition_price + calculate_merge_distance([fc_dict_6["fx1"]]),
+            "fx2": transition_price
+            + calculate_merge_distance([fc_dict_6["fx1"], fc_dict_6["fx2"]]),
+            "fx3": transition_price
+            + calculate_merge_distance([fc_dict_6["fx1"], fc_dict_6["fx3"]]),
+            "fx4": transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx1"], fc_dict_6["fx2"], fc_dict_6["fx4"]]
+            ),
+            "fx5": transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx1"], fc_dict_6["fx3"], fc_dict_6["fx5"]]
+            ),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx1"],
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx3"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx1"],
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx3"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+        },
+        "fx1": {
+            "fx2": transition_price + calculate_merge_distance([fc_dict_6["fx2"]]),
+            "fx3": transition_price + calculate_merge_distance([fc_dict_6["fx3"]]),
+            "fx4": transition_price
+            + calculate_merge_distance([fc_dict_6["fx2"], fc_dict_6["fx4"]]),
+            "fx5": transition_price
+            + calculate_merge_distance([fc_dict_6["fx3"], fc_dict_6["fx5"]]),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx3"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx3"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+        },
+        "fx2": {
+            "fx3": transition_price + calculate_merge_distance([fc_dict_6["fx3"]]),
+            "fx4": transition_price + calculate_merge_distance([fc_dict_6["fx4"]]),
+            "fx5": transition_price
+            + calculate_merge_distance([fc_dict_6["fx3"], fc_dict_6["fx5"]]),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx4"], fc_dict_6["fx3"], fc_dict_6["fx5"], fc_dict_6["fx6"]]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [fc_dict_6["fx4"], fc_dict_6["fx3"], fc_dict_6["fx5"], fc_dict_6["fx6"]]
+            ),
+        },
+        "fx4": {
+            "fx3": transition_price + calculate_merge_distance([fc_dict_6["fx3"]]),
+            "fx5": transition_price
+            + calculate_merge_distance([fc_dict_6["fx3"], fc_dict_6["fx5"]]),
+            "fx6": transition_price + shortest_distances_1356,
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx3"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+        },
+        "fx3": {
+            "fx2": transition_price + calculate_merge_distance([fc_dict_6["fx2"]]),
+            "fx4": transition_price
+            + calculate_merge_distance([fc_dict_6["fx2"], fc_dict_6["fx4"]]),
+            "fx5": transition_price + calculate_merge_distance([fc_dict_6["fx5"]]),
+            "fx6": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx5"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+        },
+        "fx5": {
+            "fx2": transition_price + calculate_merge_distance([fc_dict_6["fx2"]]),
+            "fx4": transition_price
+            + calculate_merge_distance([fc_dict_6["fx2"], fc_dict_6["fx4"]]),
+            "fx6": transition_price + shortest_distances_1246,
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_6["fx2"],
+                    fc_dict_6["fx4"],
+                    fc_dict_6["fx6"],
+                ]
+            ),
+        },
+        "fx6": {"end": transition_price},
+        "end": {},
+    }
+    shortest_distances, predecessors = dijkstra(graph, "start")
+    print(shortest_distances)
+    print(get_shortest_path(predecessors, "start", "end"))
+
+
 if __name__ == "__main__":
+    # TODO add different lada to see how the merge result varies
     # graph = {
     #     "A": {"B": 1, "C": 4},
     #     "B": {"C": 2, "D": 5},
