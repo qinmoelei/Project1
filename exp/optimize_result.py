@@ -17,7 +17,7 @@ def calculate_price_time_whole_process(function_list_list):
         time, price = calculate_price_time(function_list)
         single_execution_time += time
         single_exeuction_price += price
-    price_all = (single_exeuction_price + single_exeuction_price) * execution_time
+    price_all = (single_exeuction_price) * execution_time
     single_execution_time = single_execution_time * 1e-3
     return price_all, single_execution_time
 
