@@ -278,14 +278,155 @@ def calculate_merge_function_DAG1(fc_dict_x):
             "f5": transition_price + calculate_merge_distance([fc_dict_x["f5"]]),
             "f6": transition_price + calculate_merge_distance([fc_dict_x["f6"]]),
             "f7": transition_price
-            + calculate_merge_distance([fc_dict_x["f3"], fc_dict_x["f4"],fc_dict_x["f7"]]),
+            + calculate_merge_distance(
+                [fc_dict_x["f3"], fc_dict_x["f4"], fc_dict_x["f7"]]
+            ),
             "f8": transition_price
-            + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f4"],fc_dict_x["f8"]]),
+            + calculate_merge_distance(
+                [fc_dict_x["f5"], fc_dict_x["f4"], fc_dict_x["f8"]]
+            ),
             "f9": transition_price
-            + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f6"],fc_dict_x["f9"]]),
+            + calculate_merge_distance(
+                [fc_dict_x["f5"], fc_dict_x["f6"], fc_dict_x["f9"]]
+            ),
             "f10": transition_price
             + calculate_merge_distance(
-                [fc_dict_x["f3"], fc_dict_x["f4"], fc_dict_x["f5"], fc_dict_x["f6"]]
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f4"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f4"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+        },
+        "f3": {
+            "f4": transition_price + calculate_merge_distance([fc_dict_x["f4"]]),
+            "f5": transition_price + calculate_merge_distance([fc_dict_x["f5"]]),
+            "f6": transition_price + calculate_merge_distance([fc_dict_x["f6"]]),
+            "f7": transition_price + shortest_distances_247,
+            "f8": transition_price
+            + calculate_merge_distance(
+                [fc_dict_x["f4"], fc_dict_x["f5"], fc_dict_x["f8"]]
+            ),
+            "f9": transition_price
+            + calculate_merge_distance(
+                [fc_dict_x["f5"], fc_dict_x["f6"], fc_dict_x["f9"]]
+            ),
+            "f10": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f4"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f4"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+        },
+        "f4": {
+            "f3": transition_price + calculate_merge_distance([fc_dict_x["f3"]]),
+            "f5": transition_price + calculate_merge_distance([fc_dict_x["f5"]]),
+            "f6": transition_price + calculate_merge_distance([fc_dict_x["f6"]]),
+            "f7": transition_price + shortest_distances_237,
+            "f8": transition_price
+            + shortest_distances_258,
+            "f9": transition_price
+            + calculate_merge_distance(
+                [fc_dict_x["f5"], fc_dict_x["f6"], fc_dict_x["f9"]]
+            ),
+            "f10": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+        },
+        "f5": {
+            "f3": transition_price + calculate_merge_distance([fc_dict_x["f3"]]),
+            "f4": transition_price + calculate_merge_distance([fc_dict_x["f4"]]),
+            "f6": transition_price + calculate_merge_distance([fc_dict_x["f6"]]),
+            "f7": transition_price
+            + calculate_merge_distance(
+                [fc_dict_x["f3"], fc_dict_x["f4"], fc_dict_x["f7"]]
+            ),
+            "f8": transition_price
+            + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f8"]]),
+            "f9": transition_price
+            + calculate_merge_distance(
+                [fc_dict_x["f5"], fc_dict_x["f6"], fc_dict_x["f9"]]
+            ),
+            "f10": transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
+            ),
+            "end": 2 * transition_price
+            + calculate_merge_distance(
+                [
+                    fc_dict_x["f3"],
+                    fc_dict_x["f5"],
+                    fc_dict_x["f6"],
+                    fc_dict_x["f7"],
+                    fc_dict_x["f8"],
+                    fc_dict_x["f9"],
+                    fc_dict_x["f10"],
+                ]
             ),
         },
     }
