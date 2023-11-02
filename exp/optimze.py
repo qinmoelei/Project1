@@ -399,16 +399,14 @@ def calculate_merge_function_DAG1(fc_dict_x):
                 [fc_dict_x["f3"], fc_dict_x["f4"], fc_dict_x["f7"]]
             ),
             "f8": transition_price
-            + calculate_merge_distance([fc_dict_x["f5"], fc_dict_x["f8"]]),
+            + shortest_distances_248,
             "f9": transition_price
-            + calculate_merge_distance(
-                [fc_dict_x["f5"], fc_dict_x["f6"], fc_dict_x["f9"]]
-            ),
+            + shortest_distances_269,
             "f10": transition_price
             + calculate_merge_distance(
                 [
                     fc_dict_x["f3"],
-                    fc_dict_x["f5"],
+                    fc_dict_x["f4"],
                     fc_dict_x["f6"],
                     fc_dict_x["f7"],
                     fc_dict_x["f8"],
@@ -420,7 +418,7 @@ def calculate_merge_function_DAG1(fc_dict_x):
             + calculate_merge_distance(
                 [
                     fc_dict_x["f3"],
-                    fc_dict_x["f5"],
+                    fc_dict_x["f4"],
                     fc_dict_x["f6"],
                     fc_dict_x["f7"],
                     fc_dict_x["f8"],
