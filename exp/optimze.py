@@ -778,3 +778,4 @@ if __name__ == "__main__":
     # shortest_distances_237, predecessors_237 = dijkstra(graph_237, "f2")
     # print(shortest_distances_237)
     calculate_merge_function_DAG1(fc_dict_x)
+    calculate_merge_function_DAG2(fc_dict_6)
