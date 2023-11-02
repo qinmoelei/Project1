@@ -5,7 +5,7 @@ sys.path.append(".")
 from exp.data import *
 
 # calcualte the transmission for 10 functions
-transition_fee = execution_time * transition_price * 11
+transition_fee = execution_time * transition_price * 2
 single_exeuction_price = 0
 single_execution_time=0
 for func in fc_dict_x:
@@ -41,7 +41,7 @@ print("single_execution_time",single_execution_time*1e-3)
 
 
 
-transition_fee = execution_time * transition_price * 7
+transition_fee = execution_time * transition_price * 2
 single_exeuction_price = 0
 single_execution_time=0
 for func in fc_dict_6:
