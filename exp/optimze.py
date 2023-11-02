@@ -36,9 +36,9 @@ def calculate_target(time, price, lada=1e-7):
     return lada * time + price
 
 
-def calculate_merge_distance(function_list):
+def calculate_merge_distance(function_list,lada=1e-7):
     time, price = calculate_price_time(function_list)
-    return calculate_target(time, price)
+    return calculate_target(time, price,lada=lada)
 
 
 def dijkstra(graph, start):
