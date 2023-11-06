@@ -128,7 +128,7 @@ DAG1_graph_word = {
         "f4": ["f4"],
         "f5": ["f5"],
         "f6": ["f6"],
-        "f7": ["DAG1_graph_237_word"],
+        "f7": ["DAG1_graph_247_word"],
         "f8": [
             "f4",
             "f5",
